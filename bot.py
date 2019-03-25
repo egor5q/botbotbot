@@ -117,7 +117,7 @@ def h(m):
             try:
                 for idd in info.lobby.game[ids]['players']:
                     if m.from_user.id!=idd:
-                      bot.send_message(idd, info.lobby.game[ids]['players'][m.from_user.id]['name']+':\n'+m.text)
+                      bot.send_message(idd, '_'+info.lobby.game[ids]['players'][m.from_user.id]['name']+'_:\n'+m.text, parse_mode='markdown')
             except:
                 pass
 

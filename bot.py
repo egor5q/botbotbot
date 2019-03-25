@@ -50,7 +50,9 @@ def del2(id):
 
 def delplayer(id, id2):
     try:
-    del info.lobby.game[id]['players'][id2]
+        del info.lobby.game[id]['players'][id2]
+    except:
+        pass
             
 def deleter(id):
   try:

@@ -11,7 +11,8 @@ from telebot import types
 from emoji import emojize
 token = os.environ['TELEGRAM_TOKEN']
 bot = telebot.TeleBot(token)
-randlist=['Шальная Императрица', 'Равен', 'Котейка', 'Артем', 'Возбужденный Самец', 'Писюк', 'Веган', 'Пйос', 'Большой Банан', 'Мявс', 'Клубничка', 'Гей Воробей', 'Енотик']
+randlist=['Возбужденный Самец', 'Веган', 'Большой Банан', 'Гей Воробей', 'Большая Залупа Коня', 'Малая Залупа Коня', 'Осёл', 'Трахер', 
+         'Сыч ебаный', 'Пидорас', 'Дрочила', 'Дрочемыш', 'Зашел сюда чтобы подрочить', 'Волосатая Феминистка', 'Гей']
 @bot.callback_query_handler(func=lambda call:True)
 def inline(call):
     if call.data=='join':        
@@ -22,13 +23,19 @@ def inline(call):
                   if call.from_user.id in info.lobby.game[ids]['players']:
                     z+=1    
               if z==0:
-               if len(info.lobby.game[call.message.chat.id]['players'])<12:
+               if len(info.lobby.game[call.message.chat.id]['players'])<len(randlist):
                   info.lobby.game[call.message.chat.id]['players'].update(createuser(call.from_user.id, call.message.chat.id))
                   bot.send_message(call.message.chat.id, 'Аноним присоединился!')
                   info.lobby.alreadyplay.append(call.from_user.id)
-               if len(info.lobby.game[call.message.chat.id]['players'])>11:
-                bot.send_message(call.message.chat.id, 'Набор окончен!')
-                begin(call.message.chat.id)
+               else:
+                   try:
+                       bot.send_message(call.from_user.id, 'Достигнуто максимальное число участников!')
+                   except:
+                       pass
+                    
+               #if len(info.lobby.game[call.message.chat.id]['players'])>len(randlist):
+               # bot.send_message(call.message.chat.id, 'Набор окончен!')
+               # begin(call.message.chat.id)
       except:
         pass
                                   
@@ -85,11 +92,12 @@ def namechoice(id):
         
         
 def begin(id):
-    for ids in info.lobby.game[id]['players']:
-      try:
-        bot.send_message(ids, 'Пишите сюда что то')
-      except:
-        bot.send_message(id, 'Какой то пидорас не открыл диалог с ботом!')
+    pass
+    #for ids in info.lobby.game[id]['players']:
+    #  try:
+    #    bot.send_message(ids, 'Пишите сюда что то')
+    #  except:
+    #    bot.send_message(id, 'Какой то пидорас не открыл диалог с ботом!')
     
     
 @bot.message_handler(content_types=['text'])
@@ -102,6 +110,7 @@ def h(m):
               info.lobby.game[ids]['timer'].cancel()
               t=threading.Timer(1500, del2, args=[ids])
               t.start()
+              info.lobby.game[ids]['timer'].stop()
               info.lobby.game[ids]['timer']=t
             except:
                 pass

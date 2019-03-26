@@ -162,7 +162,7 @@ def mutee(m):
             datetext='Ошибка'
             
             if m.reply_to_message!=None:
-                bot.restrict_chat_member(can_send_messages=False, user_id=message.reply_to_message.from_user.id, chat_id=message.chat.id, until_date=untildate)
+                bot.restrict_chat_member(can_send_messages=False, user_id=m.reply_to_message.from_user.id, chat_id=m.chat.id, until_date=untildate)
                 bot.send_message(m.chat.id, 'Замутил на '+str(i)+' '+datetext)
       except Exception as e:
         bot.send_message(441399484, traceback.format_exc())

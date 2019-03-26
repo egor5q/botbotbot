@@ -105,7 +105,7 @@ def begin(id):
  
 @bot.message_handler(commands=['mute'])
 def mutee(m):
-    print calendar.monthrange(2012,1)
+    print (calendar.monthrange(2012,1))
     if m.chat.id!=m.from_user.id:
         member=get_chat_member(m.chat.id, m.from_user.id)
         if member.status=='administrator' or member.status=='creator':

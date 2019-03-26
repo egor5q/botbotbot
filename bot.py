@@ -142,13 +142,25 @@ def mutee(m):
                     text='Замутил на '+str(i)+' '+datetext+'.'
                 bot.send_message(m.chat.id, text)
         else:
-            bot.send_message(m.chat.id, 'Ты сука кто такой чтобы это делать!?')
+            bot.send_message(m.chat.id, 'Ты кто такой сука чтобы это делать?')
       except Exception as e:
         bot.send_message(m.chat.id, 'Ошибка мута.')
 
             
 
-    
+@bot.message_handler(commands=['mute'])
+def unmutee(m): 
+  if m.chat.id!=m.from_user.id:
+      try:
+        member=bot.get_chat_member(m.chat.id, m.from_user.id)
+        if member.status=='administrator' or member.status=='creator':
+            bot.restrict_chat_member(can_send_messages=True, user_id=m.reply_to_message.from_user.id, chat_id=m.chat.id)
+            bot.send_message(m.chat.id, 'Размутил.')
+        else:
+            bot.send_message(m.chat.id, 'Ты кто такой сука чтобы это делать?')
+         
+
+
 @bot.message_handler(content_types=['text'])
 def h(m):
     for ids in info.lobby.game:

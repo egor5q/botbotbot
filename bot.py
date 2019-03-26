@@ -137,14 +137,14 @@ def mutee(m):
             datetext='Ошибка'
             print('number'+number+'z')
             if number=='d':
-                day+=i
                 datetext='дней'
+                day+=i
             if number=='m':
-                minute+=i
                 datetext='минут'
+                minute+=i
             if number=='h':
-                hour+=i
                 datetext='часов'
+                hour+=i
                 
             if minute>=60:
                 hour+=1

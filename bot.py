@@ -135,14 +135,14 @@ def mutee(m):
             minute=int(x[1])    # минуты
             hour=int(x[0])+3  # часы (+3, потому что heroku в Великобритании)
             datetext='Ошибка'
-            print(number)
+            print('number'+number+'z')
             if number=='d':
                 day+=i
                 datetext='дней'
-            elif number=='m':
+            if number=='m':
                 minute+=i
                 datetext='минут'
-            elif number=='h':
+            if number=='h':
                 hour+=i
                 datetext='часов'
                 
@@ -159,6 +159,7 @@ def mutee(m):
                 month+=1
                 day=1
                 
+           
             untildate=int(str(minute)+str(hour)+str(day)+str(month)+str(year))
             datetext='Ошибка'
             

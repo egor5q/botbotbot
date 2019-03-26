@@ -155,7 +155,7 @@ def mutee(m):
             f=calendar.monthrange(year,month)[1]
             if day>f:
                 month+=1
-                day=01
+                day=1
                 
             untildate=int(str(minute)+str(hour)+str(day)+str(month)+str(year))
             datetext='Ошибка'

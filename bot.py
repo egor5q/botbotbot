@@ -127,9 +127,9 @@ def mutee(m):
                      tru=ids
                      ind=num
                num+=1
-            day=x[ind-1]
-            month=x[1]
-            year=x[ind+1]
+            day=int(x[ind-1])
+            month=int(x[1])
+            year=int(x[ind+1])
             x=tru 
             x=x.split(":")  
             minute=int(x[1])    # минуты

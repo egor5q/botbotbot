@@ -26,11 +26,11 @@ def inline(call):
               if z==0:
                if len(info.lobby.game[call.message.chat.id]['players'])<len(randlist):
                   info.lobby.game[call.message.chat.id]['players'].update(createuser(call.from_user.id, call.message.chat.id))
-                  bot.send_message(call.message.chat.id, 'Аноним присоединился!')
+                  bot.send_message(call.message.chat.id 'Аноним вошел!')
                   info.lobby.alreadyplay.append(call.from_user.id)
                else:
                    try:
-                       bot.send_message(call.from_user.id, 'Достигнуто максимальное число участников!')
+                       bot.send_message(call.from_user.id, 'Достигнуто максимальное число пидоров!')
                    except:
                        pass
                     
@@ -78,7 +78,7 @@ def m(m):
         info.lobby.game[m.chat.id]['timer']=t
         bot.send_message(441399484, 'Вирт начался где-то!')
         Keyboard=types.InlineKeyboardMarkup()          
-        Keyboard.add(types.InlineKeyboardButton(text='Тык', callback_data='join'))
+        Keyboard.add(types.InlineKeyboardButton(text='Писька', callback_data='join'))
         info.lobby.game[m.chat.id]['startm']=bot.send_message(m.chat.id, 'Начинаем! жмите на кнопку, чтобы присоединиться', reply_markup=Keyboard)
     else:
       try:

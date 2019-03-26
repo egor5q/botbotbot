@@ -158,6 +158,8 @@ def unmutee(m):
             bot.send_message(m.chat.id, 'Размутил.')
         else:
             bot.send_message(m.chat.id, 'Ты кто такой сука чтобы это делать?')
+      except:
+          bot.send_message(m.chat.id, 'Ошибка.')
          
 
 

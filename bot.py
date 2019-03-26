@@ -109,7 +109,7 @@ def mutee(m):
     print (calendar.monthrange(2012,1)[1])
     if m.chat.id!=m.from_user.id:
       try:
-        member=getChatMember(m.chat.id, m.from_user.id)
+        member=bot.get_chat_member(m.chat.id, m.from_user.id)
         if member.status=='administrator' or member.status=='creator':
             text=m.text.split(' ')
             time=text[1]

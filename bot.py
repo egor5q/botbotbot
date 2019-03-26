@@ -8,6 +8,7 @@ import threading
 import info
 import calendar
 import test
+import time
 import traceback
 from telebot import types
 from emoji import emojize
@@ -112,9 +113,9 @@ def mutee(m):
         member=bot.get_chat_member(m.chat.id, m.from_user.id)
         if member.status=='administrator' or member.status=='creator':
             text=m.text.split(' ')
-            time=text[1]
-            i=int(time[:-1])
-            number=time[len(time)-1]
+            timee=text[1]
+            i=int(timee[:-1])
+            number=timee[len(timee)-1]
             
             x=time.ctime()
             x=x.split(" ")

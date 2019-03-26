@@ -105,7 +105,7 @@ def begin(id):
     #  except:
     #    bot.send_message(id, 'Какой то пидорас не открыл диалог с ботом!')
  
-@bot.message_handler(commands=['mute'])
+@bot.message_handler(commands=['xyeta'])
 def mutee(m):
     print (calendar.monthrange(2012,1)[1])
     if m.chat.id!=m.from_user.id:

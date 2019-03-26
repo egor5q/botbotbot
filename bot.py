@@ -8,6 +8,7 @@ import threading
 import info
 import calendar
 import test
+import traceback
 from telebot import types
 from emoji import emojize
 token = os.environ['TELEGRAM_TOKEN']
@@ -105,8 +106,9 @@ def begin(id):
  
 @bot.message_handler(commands=['mute'])
 def mutee(m):
-    print (calendar.monthrange(2012,1))
+    print (calendar.monthrange(2012,1)[1])
     if m.chat.id!=m.from_user.id:
+      try:
         member=get_chat_member(m.chat.id, m.from_user.id)
         if member.status=='administrator' or member.status=='creator':
             text=m.text.split(' ')
@@ -131,13 +133,16 @@ def mutee(m):
             x=x.split(":")  
             minute=int(x[1])    # минуты
             hour=int(x[0])+3  # часы (+3, потому что heroku в Великобритании)
-            
+            datetext='Ошибка'
             if number=='d':
                 day+=i
+                datetext='дней'
             elif number=='m':
                 minute+=i
+                datetext='минут'
             elif number=='h':
                 hour+=i
+                datetext='часов'
                 
             if minute>=60:
                 hour+=1
@@ -146,6 +151,20 @@ def mutee(m):
             if hour>=24:
                 day+=1
                 hour=hour-24
+                
+            f=calendar.monthrange(year,month)[1]
+            if day>f:
+                month+=1
+                day=01
+                
+            untildate=int(str(minute)+str(hour)+str(day)+str(month)+str(year))
+            datetext='Ошибка'
+            
+            if m.reply_to_message!=None:
+                bot.restrict_chat_member(can_send_messages=False, user_id=message.reply_to_message.from_user.id, chat_id=message.chat.id, until_date=untildate)
+                bot.send_message(m.chat.id, 'Замутил на '+str(i)+' '+datetext)
+      except Exception as e:
+        bot.send_message(441399484, traceback.format_exc())
 
             
             

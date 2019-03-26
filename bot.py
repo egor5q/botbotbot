@@ -44,8 +44,8 @@ def inline(call):
 
 def del2(id):
     try:
-      bot.send_message(id, '25 минут прошло! Вирт остановлен!')
       del info.lobby.game[id]
+      bot.send_message(id, '25 минут прошло! Вирт остановлен!')
     except:
       pass
 

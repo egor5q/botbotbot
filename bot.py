@@ -128,7 +128,7 @@ def mutee(m):
                      ind=num
                num+=1
             day=int(x[ind-1])
-            month=int(x[1])
+            month=getmonth(x[1])
             year=int(x[ind+1])
             x=tru 
             x=x.split(":")  
@@ -169,7 +169,31 @@ def mutee(m):
 
             
             
-         
+def getmonth(x):
+    if x=='Jan':
+        return 1
+    elif x=='Feb':
+        return 2
+    elif x=='Mar':
+        return 3
+    elif x=='Apr':
+        return 4
+    elif x=='May':
+        return 5
+    elif x=='Jun':
+        return 6
+    elif x=='Jul':
+        return 7
+    elif x=='Aug':
+        return 8
+    elif x=='Sep':
+        return 9
+    elif x=='Oct':
+        return 10
+    elif x=='Nov':
+        return 11
+    elif x=='Dec':
+        return 12
 
 
     

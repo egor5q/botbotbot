@@ -148,7 +148,7 @@ def mutee(m):
 
             
 
-@bot.message_handler(commands=['mute'])
+@bot.message_handler(commands=['ne_xyeta'])
 def unmutee(m): 
   if m.chat.id!=m.from_user.id:
       try:

@@ -117,55 +117,14 @@ def mutee(m):
             i=int(timee[:-1])
             number=timee[len(timee)-1]
             
-            x=time.ctime()
-            x=x.split(" ")
-            ind=0
-            num=0
-            for ids in x:
-               for idss in ids:
-                  if idss==':':
-                     tru=ids
-                     ind=num
-               num+=1
-            day=int(x[ind-1])
-            month=getmonth(x[1])
-            year=int(x[ind+1])
-            x=tru 
-            x=x.split(":")  
-            minute=int(x[1])    # минуты
-            hour=int(x[0])+3  # часы (+3, потому что heroku в Великобритании)
-            datetext='Ошибка'
-            print(number)
-            if number=='d':
-                datetext='дней'
-                day+=i
-                print('here')
-                
+            untildate=int(time.time())
             if number=='m':
-                datetext='минут'
-                minute+=i
-                print('here')
-                
+                untildate+=i*60
             if number=='h':
-                datetext='часов'
-                hour+=i
-                print('here')
-                
-            if minute>=60:
-                hour+=1
-                minute=minute-60
-            
-            if hour>=24:
-                day+=1
-                hour=hour-24
-                
-            f=calendar.monthrange(year,month)[1]
-            if day>f:
-                month+=1
-                day=1
-                
-           
-            untildate=int(str(minute)+str(hour)+str(day)+str(month)+str(year))
+                untildate+=i*3600
+            if number=='d':
+                untildate+=i*3600*24
+                           
             print(untildate)
             
             if m.reply_to_message!=None:
@@ -175,33 +134,6 @@ def mutee(m):
         bot.send_message(441399484, traceback.format_exc())
 
             
-            
-def getmonth(x):
-    if x=='Jan':
-        return 1
-    elif x=='Feb':
-        return 2
-    elif x=='Mar':
-        return 3
-    elif x=='Apr':
-        return 4
-    elif x=='May':
-        return 5
-    elif x=='Jun':
-        return 6
-    elif x=='Jul':
-        return 7
-    elif x=='Aug':
-        return 8
-    elif x=='Sep':
-        return 9
-    elif x=='Oct':
-        return 10
-    elif x=='Nov':
-        return 11
-    elif x=='Dec':
-        return 12
-
 
     
 @bot.message_handler(content_types=['text'])

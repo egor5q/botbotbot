@@ -137,7 +137,7 @@ def mutee(m):
             if m.reply_to_message!=None:
                 bot.restrict_chat_member(can_send_messages=False, user_id=m.reply_to_message.from_user.id, chat_id=m.chat.id, until_date=untildate)
                 if i==0:
-                    text='навсегда'
+                    text='Замутил навсегда.'
                 else:
                     text='Замутил на '+str(i)+' '+datetext+'.'
                 bot.send_message(m.chat.id, text)

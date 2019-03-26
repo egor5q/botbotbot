@@ -26,7 +26,7 @@ def inline(call):
               if z==0:
                if len(info.lobby.game[call.message.chat.id]['players'])<len(randlist):
                   info.lobby.game[call.message.chat.id]['players'].update(createuser(call.from_user.id, call.message.chat.id))
-                  bot.send_message(call.message.chat.id 'Аноним вошел!')
+                  bot.send_message(call.message.chat.id, 'Аноним вошел!')
                   info.lobby.alreadyplay.append(call.from_user.id)
                else:
                    try:

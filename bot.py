@@ -6,6 +6,7 @@ import math
 import random
 import threading
 import info
+import calendar
 import test
 from telebot import types
 from emoji import emojize
@@ -101,7 +102,56 @@ def begin(id):
     #    bot.send_message(ids, 'Пишите сюда что то')
     #  except:
     #    bot.send_message(id, 'Какой то пидорас не открыл диалог с ботом!')
-    
+ 
+@bot.message_handler(commands=['mute'])
+def mutee(m):
+    print calendar.monthrange(2012,1)
+    if m.chat.id!=m.from_user.id:
+        member=get_chat_member(m.chat.id, m.from_user.id)
+        if member.status=='administrator' or member.status=='creator':
+            text=m.text.split(' ')
+            time=text[1]
+            i=int(time[:-1])
+            number=time[len(time)-1]
+            
+            x=time.ctime()
+            x=x.split(" ")
+            ind=0
+            num=0
+            for ids in x:
+               for idss in ids:
+                  if idss==':':
+                     tru=ids
+                     ind=num
+               num+=1
+            day=x[ind-1]
+            month=x[1]
+            year=x[ind+1]
+            x=tru 
+            x=x.split(":")  
+            minute=int(x[1])    # минуты
+            hour=int(x[0])+3  # часы (+3, потому что heroku в Великобритании)
+            
+            if number=='d':
+                day+=i
+            elif number=='m':
+                minute+=i
+            elif number=='h':
+                hour+=i
+                
+            if minute>=60:
+                hour+=1
+                minute=minute-60
+            
+            if hour>=24:
+                day+=1
+                hour=hour-24
+
+            
+            
+         
+
+
     
 @bot.message_handler(content_types=['text'])
 def h(m):

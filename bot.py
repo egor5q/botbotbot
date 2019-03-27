@@ -124,13 +124,13 @@ def mutee(m):
             untildate=int(time.time())
             if number=='m':
                 untildate+=i*60
-                datetext='минут'
+                datetext='сисяк'
             if number=='h':
                 untildate+=i*3600
-                datetext='часов'
+                datetext='больших сисяк'
             if number=='d':
                 untildate+=i*3600*24
-                datetext='дней'
+                datetext='гигантских сисяк'
                            
             print(untildate)
             

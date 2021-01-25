@@ -14,8 +14,8 @@ from telebot import types
 from emoji import emojize
 token = os.environ['TELEGRAM_TOKEN']
 bot = telebot.TeleBot(token)
-randlist=['Возбужденный Самец', 'Веган', 'Большой Банан', 'Гей Воробей', 'Большая Залупа Коня', 'Малая Залупа Коня', 'Осёл', 'Трахер', 
-         'Сыч ебаный', 'Пидорас', 'Дрочила', 'Дрочемыш', 'Анальный Зонд', 'Волосатая Феминистка', 'Гей', 'Еблет', 'Исма', 'Еблак', 'Минетный монстр',
+randlist=['Возбужденный самец', 'Веган', 'Большой Банан', 'Гей Воробей', 'Большая Залупа Коня', 'Малая Залупа Коня', 'Осёл', 
+         'Дрочила', 'Дрочемыш', 'Анальный Зонд', 'Гей',
          'Анальный зверь']
 @bot.callback_query_handler(func=lambda call:True)
 def inline(call):
@@ -48,7 +48,7 @@ def inline(call):
 def del2(id):
     try:
       del info.lobby.game[id]
-      bot.send_message(id, '25 минут прошло! Вирт остановлен!')
+      bot.send_message(id, '24 часа прошло! Вирт остановлен!')
     except:
       pass
 
@@ -76,12 +76,12 @@ def s(m):
 def m(m):
     if m.chat.id not in info.lobby.game:
         info.lobby.game.update(createroom(m.chat.id))
-        t=threading.Timer(1500, del2, args=[m.chat.id])
-        t.start()
-        info.lobby.game[m.chat.id]['timer']=t
+        #t=threading.Timer(999999, del2, args=[m.chat.id])
+        #t.start()
+        #info.lobby.game[m.chat.id]['timer']=t
         bot.send_message(441399484, 'Вирт начался где-то!')
         Keyboard=types.InlineKeyboardMarkup()          
-        Keyboard.add(types.InlineKeyboardButton(text='Писька', callback_data='join'))
+        Keyboard.add(types.InlineKeyboardButton(text='Кнопка', callback_data='join'))
         info.lobby.game[m.chat.id]['startm']=bot.send_message(m.chat.id, 'Начинаем! жмите на кнопку, чтобы присоединиться', reply_markup=Keyboard)
     else:
       try:
